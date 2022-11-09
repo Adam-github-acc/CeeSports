@@ -1,9 +1,14 @@
 import React from "react";
+import Footer from "./components/Footer";
+import MatchList from "./components/MatchList";
+import Navbar from "./components/Navbar";
 
 const App: React.FC = () => {
   return (
     <div>
-      Hello World
+      <Navbar />
+      <MatchList />
+      <Footer />
     </div>
   );
 }
