@@ -9,3 +9,22 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Event {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  date         DateTime
+  matchId      Int
+  referee      String
+  stadium      String
+  city         String
+  league       String
+  leagueLogo   String
+  country      String
+  countryLogo  String
+  hometeam     String
+  hometeamLogo String
+  awayteam     String
+  awayteamLogo String
+}
