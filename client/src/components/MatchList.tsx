@@ -6,31 +6,35 @@ import { isPropertySignature } from "typescript";
 import { database } from './db'
 
 const MatchList: React.FC = () => {
-  const [matches, setMatches] = useState<[Props] | any>();
+  const [matches, setMatches] = useState<Props[]>();
   function logger2() {
-    setMatches(result)
+    /* console.log(result[100])
+    result = result.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
+    console.log(result[100]) */
+    setMatches(result.sort((a:Props, b:Props) => a.leagueId - b.leagueId));
   }
   function logger() {
     console.log(matches)
   }
   const fixtureDate:string = database.parameters.date;
-      const result = database.response.map(res => {
-        return {
-          date: fixtureDate,
-          time: res.fixture.timestamp,
-          matchId: res.fixture.id,
-          referee: res.fixture.referee,
-          stadium: res.fixture.venue.name,
-          city: res.fixture.venue.city,
-          league: res.league.name,
-          leagueLogo: res.league.logo,
-          country: res.league.country,
-          hometeam: res.teams.home.name,
-          hometeamLogo: res.teams.home.logo,
-          awayteam: res.teams.away.name,
-          awayteamLogo: res.teams.away.logo,
-        }
-      })
+  let result:Props[] = database.response.map(res => {
+    return {
+      date: fixtureDate,
+      time: res.fixture.date,
+      matchId: res.fixture.id,
+      referee: res.fixture.referee,
+      stadium: res.fixture.venue.name,
+      city: res.fixture.venue.city,
+      league: res.league.name,
+      leagueId: res.league.id,
+      leagueLogo: res.league.logo,
+      country: res.league.country,
+      hometeam: res.teams.home.name,
+      hometeamLogo: res.teams.home.logo,
+      awayteam: res.teams.away.name,
+      awayteamLogo: res.teams.away.logo,
+    }
+  })
   async function handleMatches(date:Date) {
     const response = await readByDate(date);
     if(response) setMatches(response);
@@ -38,15 +42,16 @@ const MatchList: React.FC = () => {
       /* const api = await readApiByDate(date)
         .catch(console.error); */
       const fixtureDate:string = database.parameters.date;
-      const result = database.response.map(res => {
+      const result:Props[] = database.response.map(res => {
         return {
           date: fixtureDate,
-          time: res.fixture.timestamp,
+          time: res.fixture.date,
           matchId: res.fixture.id,
           referee: res.fixture.referee,
           stadium: res.fixture.venue.name,
           city: res.fixture.venue.city,
           league: res.league.name,
+          leagueId: res.league.id,
           leagueLogo: res.league.logo,
           country: res.league.country,
           hometeam: res.teams.home.name,
