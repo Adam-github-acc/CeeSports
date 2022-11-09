@@ -13,6 +13,25 @@ app.get("/", (req: Request, res: Response) => {
   res.send(`Server is running on port: ${PORT}`);
 });
 
+app.get('/api/events/:date', async (req: Request, res: Response) => {
+  try {
+      const eventsByDate = await prisma.event.findMany({
+        where:{
+          date: req.params['date']
+        }
+      });
+      return res.json({
+          success: true,
+          data: eventsByDate
+      });
+  } catch (error) {
+      return res.json({
+          success: false,
+          message: error
+      });
+  }
+});
+
 app.post('/api/events', async (req: Request, res: Response) => {
   try {
       const { date, matchId, referee, stadium, city,
