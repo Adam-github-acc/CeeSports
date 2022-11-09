@@ -1,4 +1,6 @@
-const Match: React.FC = () => {
+import { Props } from "../types";
+
+const Match: React.FC<Props> = () => {
   return (
     <div>
       Match
