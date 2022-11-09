@@ -7,14 +7,19 @@ import { database } from './db'
 
 const MatchList: React.FC = () => {
   const [matches, setMatches] = useState<Props[]>();
+  const [leagueIds, setLeagueIds] = useState <number[]>();
   function logger2() {
-    /* console.log(result[100])
+    const leagueIdSet = new Set<number>();
     result = result.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
-    console.log(result[100]) */
-    setMatches(result.sort((a:Props, b:Props) => a.leagueId - b.leagueId));
+    for(let i = 0; i < result.length; i++) {
+      leagueIdSet.add(result[i].leagueId);
+    }
+    const leagueIdArray:number[] = Array.from(leagueIdSet);
+    setMatches(result);
+    setLeagueIds(leagueIdArray);
   }
   function logger() {
-    console.log(matches)
+    console.log(matches);
   }
   const fixtureDate:string = database.parameters.date;
   let result:Props[] = database.response.map(res => {
@@ -34,7 +39,7 @@ const MatchList: React.FC = () => {
       awayteam: res.teams.away.name,
       awayteamLogo: res.teams.away.logo,
     }
-  })
+  });
   async function handleMatches(date:Date) {
     const response = await readByDate(date);
     if(response) setMatches(response);
@@ -68,9 +73,14 @@ const MatchList: React.FC = () => {
     <div>
       <div onClick={logger2}>Hello1</div>
       <div onClick={logger}>Hello2</div>
-      {matches && matches.map((item:Props) => (
-          <Match item={item} key={item.matchId} />
-        ))}
+      <div>{leagueIds && leagueIds.map((id:number) => (
+          <div key={id}>
+            <div>{id}</div>
+            <div>{matches && matches.map((item:Props) => (
+              id === item.leagueId && <Match item={item} key={item.matchId} />
+            ))}</div>
+          </div>
+        ))}</div>
     </div>
   );
 }
