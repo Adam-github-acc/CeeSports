@@ -1,9 +1,9 @@
 import { Props } from "../types";
 
-const Match: React.FC<Props> = () => {
+const Match: React.FC<Props | any> = ({item}) => {
   return (
     <div>
-      Match
+      {item.time}
     </div>
   );
 }

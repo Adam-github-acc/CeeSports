@@ -1,6 +1,6 @@
 export interface Props {
-  matchInfo: {
-    date:Date
+    date:string
+    time:Number
     matchId:Number
     referee:String
     stadium:String
@@ -8,10 +8,8 @@ export interface Props {
     league:String
     leagueLogo:String
     country:String
-    countryLogo:String
     hometeam:String
     hometeamLogo:String
     awayteam:String
     awayteamLogo:String
-  }
 }

@@ -10,11 +10,11 @@ const options:any = {
   }
 };
 
-export const create = async (date:Date) => {
+export const create = async (date:Date, data:[Props]) => {
   fetch(`${url}${date}`, {
     method: 'POST',
     headers: {'Content-type' : 'application/json'},
-    body: JSON.stringify(date),
+    body: JSON.stringify(data),
   })
   .then(result => result.json())
   .catch((error) => console.log(error))
@@ -22,13 +22,12 @@ export const create = async (date:Date) => {
 
 export const readByDate = async (date:Date) => {
   const event = await fetch(`${url}${date}`);
-  const json:Props = await event.json();
+  const json = await event.json();
   return json;
 }
 
-export const readApiByDate = (date:Date) => {
-  fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}`, options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
+export const readApiByDate = async (date:Date) => {
+  const response = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}`, options)
+  const json = await response.json();
+  return json;
 }
