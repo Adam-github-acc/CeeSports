@@ -4,7 +4,9 @@ import { Props } from "../types";
 const Match: React.FC<Props | any> = ({item}) => {
   return (
     <div>
+      {/* <div>{item.hometeamLogo}</div> */}
       <div>{item.hometeam}</div>
+      {/* <div>{item.awayteamLogo}</div> */}
       <div>{item.awayteam}</div>
       <div>{moment(item.time).format('h:mm')}</div>
     </div>

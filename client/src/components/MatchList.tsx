@@ -1,13 +1,14 @@
 import { Props } from "../types";
 import Match from "./Match";
+import League from "./League";
 import { readByDate, create, readApiByDate } from "../utils";
 import { useState, useEffect } from "react";
-import { isPropertySignature } from "typescript";
 import { database } from './db'
 
 const MatchList: React.FC = () => {
   const [matches, setMatches] = useState<Props[]>();
   const [leagueIds, setLeagueIds] = useState <number[]>();
+  const newArr:number[] = [];
   function logger2() {
     const leagueIdSet = new Set<number>();
     result = result.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
@@ -75,7 +76,9 @@ const MatchList: React.FC = () => {
       <div onClick={logger}>Hello2</div>
       <div>{leagueIds && leagueIds.map((id:number) => (
           <div key={id}>
-            <div>{id}</div>
+            <div>{matches && matches.map((item:Props) => (
+              id === item.leagueId && !newArr.find(a => a === id) && newArr.push(id) && <League item={item} />
+            ))}</div>
             <div>{matches && matches.map((item:Props) => (
               id === item.leagueId && <Match item={item} key={item.matchId} />
             ))}</div>
