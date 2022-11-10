@@ -1,11 +1,11 @@
-import { Props } from "../../../types";
-import Match from "../../Match/Match";
-import League from "../../League/League";
-import { readByDate, create, readApiByDate } from "../../../utils";
+import { Props } from "../../types";
+import Match from "../Match/Match";
+import League from "../League/League";
+import { readByDate, create, readApiByDate } from "../../utils";
 import { useState } from "react";
-import { database } from '../../db'
+import { database } from '../db'
 
-const MatchList: React.FC = () => {
+const MatchList: React.FC<any> = ({date}) => {
   const [matches, setMatches] = useState<Props[]>();
   const [leagueIds, setLeagueIds] = useState <number[]>();
   const newArr:number[] = [];
@@ -41,7 +41,7 @@ const MatchList: React.FC = () => {
       awayteamLogo: res.teams.away.logo,
     }
   });
-  async function handleMatches(date:Date) {
+  async function handleMatches(date:string) {
     const response = await readByDate(date);
     if(response) setMatches(response);
     else {

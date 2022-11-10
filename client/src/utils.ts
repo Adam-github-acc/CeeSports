@@ -10,7 +10,7 @@ const options:any = {
   }
 };
 
-export const create = async (date:Date, data:[Props]) => {
+export const create = async (date:string, data:[Props]) => {
   fetch(`${url}${date}`, {
     method: 'POST',
     headers: {'Content-type' : 'application/json'},
@@ -20,13 +20,13 @@ export const create = async (date:Date, data:[Props]) => {
   .catch((error) => console.log(error))
 }
 
-export const readByDate = async (date:Date) => {
+export const readByDate = async (date:string) => {
   const event = await fetch(`${url}${date}`);
   const json = await event.json();
   return json;
 }
 
-export const readApiByDate = async (date:Date) => {
+export const readApiByDate = async (date:string) => {
   const response = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}`, options)
   const json = await response.json();
   return json;
