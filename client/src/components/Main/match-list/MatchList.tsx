@@ -1,9 +1,9 @@
-import { Props } from "../types";
-import Match from "./Match/Match";
-import League from "./League/League";
-import { readByDate, create, readApiByDate } from "../utils";
-import { useState, useEffect } from "react";
-import { database } from './db'
+import { Props } from "../../../types";
+import Match from "../../Match/Match";
+import League from "../../League/League";
+import { readByDate, create, readApiByDate } from "../../../utils";
+import { useState } from "react";
+import { database } from '../../db'
 
 const MatchList: React.FC = () => {
   const [matches, setMatches] = useState<Props[]>();
@@ -71,7 +71,7 @@ const MatchList: React.FC = () => {
   }
   //using filter to chose specific league
   return (
-    <div>
+    <div className="match-list">
       <div onClick={logger2}>Hello1</div>
       <div onClick={logger}>Hello2</div>
       <div>{leagueIds && leagueIds.map((id:number) => (

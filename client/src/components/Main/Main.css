@@ -1,0 +1,19 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+.match-list {
+  width: 40vw;
+  box-sizing: border-box;
+  border-radius: 1rem;
+}
+.main-left {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+}
+.main-right {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+}

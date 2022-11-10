@@ -1,13 +1,13 @@
 import React from "react";
 import Footer from "./components/Footer";
-import MatchList from "./components/MatchList";
+import Main from "./components/Main/Main";
 import Navbar from "./components/Navbar";
 
 const App: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <MatchList />
+      <Main />
       <Footer />
     </div>
   );
