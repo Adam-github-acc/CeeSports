@@ -10,7 +10,22 @@ app.use(express.urlencoded({ extended: true }));
 const PORT: number | string = process.env.PORT || 3000;
 
 app.get("/", (req: Request, res: Response) => {
-  res.send(`Server is running on port: ${PORT}`);
+  res.send(`Server is running on port: ${PORT} home`);
+});
+
+app.get("/api/events", async (req: Request, res: Response) => {
+  try {
+    const events = await prisma.event.findMany();
+    return res.json({
+        success: true,
+        data: events
+    });
+} catch (error) {
+    return res.json({
+        success: false,
+        message: error
+    });
+}
 });
 
 app.get('/api/events/:date', async (req: Request, res: Response) => {
@@ -34,20 +49,21 @@ app.get('/api/events/:date', async (req: Request, res: Response) => {
 
 app.post('/api/events', async (req: Request, res: Response) => {
   try {
-      const { date, matchId, referee, stadium, city,
-         league, leagueLogo, country, countryLogo,
-          hometeam, hometeamLogo, awayteam, awayteamLogo } = req.body;
+      const { date, time, matchId, referee, stadium,
+        city, league, leagueId, leagueLogo, country,
+        hometeam, hometeamLogo, awayteam, awayteamLogo } = req.body;
       const newEvent = await prisma.event.create({
           data: {
             date,
+            time,
             matchId,
             referee,
             stadium,
             city,
             league,
+            leagueId,
             leagueLogo,
             country,
-            countryLogo,
             hometeam,
             hometeamLogo,
             awayteam,
