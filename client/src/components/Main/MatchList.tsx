@@ -2,28 +2,30 @@ import { Props } from "../../types";
 import Match from "../Match/Match";
 import League from "../League/League";
 import { readByDate, create, readApiByDate } from "../../utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { database } from '../db'
 
 const MatchList: React.FC<any> = ({date}) => {
+  let result:Props[];
   const [matches, setMatches] = useState<Props[]>();
   const [leagueIds, setLeagueIds] = useState <number[]>();
   const newArr:number[] = [];
   function logger2() {
     const leagueIdSet = new Set<number>();
-    result = result.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
+    if(matches) result = matches.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
     for(let i = 0; i < result.length; i++) {
       leagueIdSet.add(result[i].leagueId);
     }
     const leagueIdArray:number[] = Array.from(leagueIdSet);
     setMatches(result);
     setLeagueIds(leagueIdArray);
-  }
-  function logger() {
-    console.log(matches);
+    if(matches) {
+      console.log('send')
+      create(matches);
+    }
   }
   const fixtureDate:string = database.parameters.date;
-  let result:Props[] = database.response.map(res => {
+  result = database.response.map(res => {
     return {
       date: fixtureDate,
       time: res.fixture.date,
@@ -41,14 +43,31 @@ const MatchList: React.FC<any> = ({date}) => {
       awayteamLogo: res.teams.away.logo,
     }
   });
-  async function handleMatches(date:string) {
+  function logger() {
+    console.log(matches);
+  }
+  useEffect(() => {
+    /* handleMatches()
+    const leagueIdSet = new Set<number>();
+    if(matches) result = matches.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
+    for(let i = 0; i < result.length; i++) {
+      leagueIdSet.add(result[i].leagueId);
+    }
+    const leagueIdArray:number[] = Array.from(leagueIdSet);
+    setMatches(result);
+    setLeagueIds(leagueIdArray); */
+  }, [date])
+  async function handleMatches() {
     const response = await readByDate(date);
-    if(response) setMatches(response);
+    console.log(response);
+    if(response.succes) setMatches(response);
     else {
-      /* const api = await readApiByDate(date)
-        .catch(console.error); */
-      const fixtureDate:string = database.parameters.date;
-      const result:Props[] = database.response.map(res => {
+      console.log('calling api')
+      const api = await readApiByDate(date)
+        .catch(console.error);
+      console.log(api)
+      const fixtureDate:string = api.parameters.date;
+      const result:Props[] = api.response.map((res: { fixture: { date: any; id: any; referee: any; venue: { name: any; city: any; }; }; league: { name: any; id: any; logo: any; country: any; }; teams: { home: { name: any; logo: any; }; away: { name: any; logo: any; }; }; }) => {
         return {
           date: fixtureDate,
           time: res.fixture.date,
@@ -67,6 +86,7 @@ const MatchList: React.FC<any> = ({date}) => {
         }
       })
       setMatches(result);
+      create(result);
     }
   }
   //using filter to chose specific league
