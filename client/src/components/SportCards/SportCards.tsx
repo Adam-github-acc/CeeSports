@@ -3,7 +3,10 @@ import Card from "./Card";
 
 const SportsCards: React.FC = () => {
   const [sport, setSport] = useState('')
-  const sportArray = [['Football', 'football'], ['Basketball', 'basketball'], ['Tennis', 'tennis'], ['Baseball', 'baseball'], ['Handball', 'handball'], ['American Football', 'american-football']]
+  const sportArray = [['Football', 'football'],
+    ['Basketball', 'basketball'], ['Tennis', 'tennis'],
+    ['Baseball', 'baseball'], ['Handball', 'handball'],
+    ['American Football', 'american-football']]
   return (
     <div>
       <div id="cards">
