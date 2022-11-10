@@ -1,0 +1,15 @@
+.league-logo {
+  width: 2rem;
+  height: 2rem;
+}
+
+.league-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgb(95, 217, 251);
+}
+
+.league-country {
+  color: rgb(132, 132, 132);
+}

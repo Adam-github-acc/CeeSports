@@ -1,0 +1,27 @@
+.team-logo {
+  width: 2rem;
+}
+
+.team-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10%;
+}
+
+.match {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.match-time {
+  display: grid;
+  place-items: center;
+  border-right: solid gray 1px;
+  padding: 1rem;
+  width: 7%;
+}
