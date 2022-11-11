@@ -14,18 +14,18 @@ model Event {
   id           String   @id @default(uuid())
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  date         String
-  time         String
-  matchId      Int
-  referee      String
-  stadium      String
-  city         String
-  league       String
-  leagueId     Int
-  leagueLogo   String
-  country      String
-  hometeam     String
-  hometeamLogo String
-  awayteam     String
-  awayteamLogo String
+  date         String?
+  time         String?
+  matchId      Int?
+  referee      String?
+  stadium      String?
+  city         String?
+  league       String?
+  leagueId     Int?
+  leagueLogo   String?
+  country      String?
+  hometeam     String?
+  hometeamLogo String?
+  awayteam     String?
+  awayteamLogo String?
 }

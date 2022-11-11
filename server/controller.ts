@@ -38,27 +38,8 @@ exports.readByDate = async (req:Request, res:Response) => {
 
 exports.createMany =  async (req:Request, res:Response) => {
     try {
-        //console.log('body', req.body)
-        const { date, time, matchId, referee, stadium,
-          city, league, leagueId, leagueLogo, country,
-          hometeam, hometeamLogo, awayteam, awayteamLogo } = req.body;
         const newEvent = await prisma.event.createMany({
-            data: {
-              date,
-              time,
-              matchId,
-              referee,
-              stadium,
-              city,
-              league,
-              leagueId,
-              leagueLogo,
-              country,
-              hometeam,
-              hometeamLogo,
-              awayteam,
-              awayteamLogo,
-            }
+            data: req.body
         });
 
         console.log('newEvent in createMany controller', newEvent);
