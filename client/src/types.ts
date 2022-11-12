@@ -1,4 +1,5 @@
 export interface Props {
+    //sport:string
     date:string
     time:string
     matchId:number

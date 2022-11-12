@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Card from "./Card";
 
-const SportsCards: React.FC = () => {
-  const [sport, setSport] = useState('')
+const SportsCards: React.FC<any> = ({setSport}) => {
   const sportArray = [['Football', 'football'],
     ['Basketball', 'basketball'], ['Tennis', 'tennis'],
     ['Baseball', 'baseball'], ['Handball', 'handball'],

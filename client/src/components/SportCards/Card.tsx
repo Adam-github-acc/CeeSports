@@ -5,7 +5,6 @@ const Card: React.FC<any> = ({setSport, cardName, photo}) => {
   function handleClick() {
     setSport(photo)
   }
-
   return (
     <div>
       <a className="card" onClick={handleClick}>
@@ -17,7 +16,6 @@ const Card: React.FC<any> = ({setSport, cardName, photo}) => {
             <div className="card-info">
               <div className="card-info-title">
                 <h3>{cardName}</h3>
-                <h4>See when the most important {cardName} games start</h4>
               </div>
             </div>
           </div>

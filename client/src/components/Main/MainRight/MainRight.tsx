@@ -1,6 +1,6 @@
 const MainRight: React.FC = () => {
   return (
-    <div className="main-left">
+    <div className="main-right">
       MainRight
     </div>
   );

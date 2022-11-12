@@ -171,14 +171,8 @@ i {
 }
 
 .card-info-title > h3 {
-  font-size: 1.4em;
+  font-size: 1.8em;
   line-height: 20px;
-}
-
-.card-info-title > h4 {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1em;
-  margin-top: 8px;
 }
 
 /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
@@ -213,12 +207,7 @@ i {
     padding: 0px 10px;
   }
   .card-info-title > h3 {
-    font-size: 1.3em;
-  }
-
-  .card-info-title > h4 {
-    font-size: 0.8em;
-    margin-top: 4px;
+    font-size: 1.6em;
   }
 }
 
