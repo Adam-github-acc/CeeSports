@@ -19,9 +19,11 @@ exports.readAll = async (req:Request, res:Response) => {
 
 exports.readByDate = async (req:Request, res:Response) => {
     try {
+        console.log(req.params)
         const eventsByDate = await prisma.event.findMany({
           where:{
-            date: req.params['date']
+            sport: req.params['sport'],
+            date: req.params['date'],
           }
         });
         return res.json({

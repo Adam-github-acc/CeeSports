@@ -7,6 +7,6 @@ router.post('/', createMany);
 
 router.get('/', readAll);
 
-router.get('/:date', readByDate);
+router.get('/:sport/:date', readByDate);
 
 module.exports = router;
