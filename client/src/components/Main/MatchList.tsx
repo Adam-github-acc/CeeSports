@@ -5,13 +5,13 @@ import { readByDate, create, readApiByDate } from "../../utils";
 import { useEffect, useState } from "react";
 
 const MatchList: React.FC<any> = ({date, sport}) => {
-  const [matches, setMatches] = useState<Props[]>();
+  const [matches, setMatches] = useState<Props[] | false>(false);
   const [leagueIds, setLeagueIds] = useState <number[]>();
   const newArr:number[] = [];
   let res:Props[];
   async function logger2() {
-    let result:{success:string, data:Props[]} = await readByDate('2021-04-07')
-    setMatches(result.data)
+    const response:{success:string, data:Props[]} = await readByDate('2021-04-08')
+    setMatches(response.data)
     const leagueIdSet = new Set<number>();
     if(matches) res = matches.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
     for(let i = 0; i < res.length; i++) {
@@ -26,32 +26,38 @@ const MatchList: React.FC<any> = ({date, sport}) => {
     }
   }
   async function logger() {
-    const slow = await readByDate('2021-04-07')
-    console.log(slow.data)
     console.log(matches)
+    console.log(leagueIds)
   }
   useEffect(() => {
-    /* handleMatches()
-    const leagueIdSet = new Set<number>();
-    if(matches) result = matches.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
-    for(let i = 0; i < result.length; i++) {
-      leagueIdSet.add(result[i].leagueId);
-    }
-    const leagueIdArray:number[] = Array.from(leagueIdSet);
-    setMatches(result);
-    setLeagueIds(leagueIdArray); */
+    handleMatches()
   }, [date])
   async function handleMatches() {
     let url:string = '';
-    const response = await readByDate(date);
-    console.log(response);
-    if(response.succes) setMatches(response);
+    let res:Props[] = [];
+    const response:{success:string, data:Props[]} = await readByDate(date);
+    setMatches(response.data)
+    const leagueIdSet = new Set<number>();
+    if(matches) res = response.data.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
+    if(res.length) {
+      for(let i = 0; i < res.length; i++) {
+        console.log(res[i].leagueId)
+        leagueIdSet.add(res[i].leagueId);
+      }
+      const leagueIdArray:number[] = Array.from(leagueIdSet);
+      setLeagueIds(leagueIdArray);
+      console.log(leagueIdArray);
+    } else setLeagueIds([]);
+    setMatches(res);
+    console.log(response.data);
+    if(response.data[0]) setMatches(response.data);
     else {
       console.log('calling api')
-      switch(sport) {
+      /* switch(sport) {
         case 'footboll':
-        url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}`
-        break
+          console.log('sport')
+          url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}`
+          break
       }
       const api = await readApiByDate(url)
         .catch(console.error);
@@ -75,9 +81,9 @@ const MatchList: React.FC<any> = ({date, sport}) => {
           awayteam: res.teams.away.name,
           awayteamLogo: res.teams.away.logo,
         }
-      })
-      setMatches(result);
-      create(result);
+      }) */
+      /* setMatches(result);
+      create(result); */
     }
   }
   //using filter to chose specific league
