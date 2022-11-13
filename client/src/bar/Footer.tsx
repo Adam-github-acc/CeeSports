@@ -2,7 +2,7 @@ import './bar.css'
 
 const Footer: React.FC = () => {
   return (
-    <div>
+    <div className='footer'>
       Footer
     </div>
   );

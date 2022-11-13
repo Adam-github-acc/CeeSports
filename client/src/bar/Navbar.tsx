@@ -4,7 +4,7 @@ const Navbar: React.FC<any> = ({setSport}) => {
   const handleClick = () => setSport('')
   return (
     <div className="navbar">
-      <a href=''>CeeSports</a>
+      <div>CeeSports</div>
       <div onClick={handleClick}>Select Sport</div>
     </div>
   );

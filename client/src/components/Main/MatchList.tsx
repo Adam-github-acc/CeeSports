@@ -14,25 +14,20 @@ const MatchList: React.FC<any> = ({date, sport}) => {
   async function handleMatches() {
     let url:string = '';
     let res:Props[] = [];
-    console.log(sport, date);
     const response:{success:string, data:Props[]} = await readByDate(sport, date);
     setMatches(response.data)
     const leagueIdSet = new Set<number>();
-    if(matches) res = response.data.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
+    if(response.data) res = response.data.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
     if(res.length) {
       for(let i = 0; i < res.length; i++) {
-        console.log(res[i].leagueId)
         leagueIdSet.add(res[i].leagueId);
       }
       const leagueIdArray:number[] = Array.from(leagueIdSet);
       setLeagueIds(leagueIdArray);
-      console.log('leagueIdArray', leagueIdArray);
     } else setLeagueIds([]);
     setMatches(res);
-    console.log(response.data[0]);
     if(response.data[0]) setMatches(response.data);
     else {
-      console.log(sport)
       switch(sport) {
         case 'football':
         url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}`
@@ -64,7 +59,6 @@ const MatchList: React.FC<any> = ({date, sport}) => {
           }
         })
         for(let i = 0; i < result.length; i++) {
-          console.log(result[i].leagueId)
           leagueIdSet.add(result[i].leagueId);
         }
         const leagueIdArray:number[] = Array.from(leagueIdSet);
