@@ -2,12 +2,19 @@ import { Props } from "./types"
 
 const url = 'http://localhost:3000/api/events/'
 
-const options:any = {
+const football = {
   method: 'GET',
   headers: {
     'X-RapidAPI-Key': '258d912fcbmsh6a94172ae233657p1c15e1jsnb90aeed80941',
     'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
   }
+};
+const basketball = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '258d912fcbmsh6a94172ae233657p1c15e1jsnb90aeed80941',
+		'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
+	}
 };
 
 export const create = async (data:Props[]) => {
@@ -20,15 +27,22 @@ export const create = async (data:Props[]) => {
   .catch((error) => console.log(error))
 }
 
-export const readByDate = async (date:string) => {
-  const event = await fetch(`${url}${date}`);
+export const readByDate = async (sport:string, date:string) => {
+  const event = await fetch(`${url}${sport}/${date}`);
   console.log(date)
   const json = await event.json();
   return json;
 }
 
-export const readApiByDate = async (url:string) => {
-  console.log(options)
+export const readApiByDate = async (sport:string, url:string) => {
+  switch(sport) {
+    case 'basketball':
+    var options = basketball;
+    break
+    case 'football':
+    var options = football;
+    break
+  }
   const response = await fetch(url, options)
   const json = await response.json();
   return json;

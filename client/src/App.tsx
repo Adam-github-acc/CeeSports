@@ -8,10 +8,10 @@ const App: React.FC = () => {
   const [sport, setSport] = useState('')
   return (
     <div>
-      <SportsCards setSport={setSport}/>
-      <Navbar />
-      <Main sport={sport} />
-      <Footer />
+      {sport || <SportsCards setSport={setSport}/>}
+      {sport && <Navbar />}
+      {sport && <Main sport={sport} />}
+      {sport && <Footer />}
     </div>
   );
 }
