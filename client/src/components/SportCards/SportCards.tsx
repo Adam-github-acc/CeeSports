@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Card from "./Card";
 
 const SportsCards: React.FC<any> = ({setSport}) => {

@@ -9,7 +9,7 @@ const Main: React.FC<any> = ({sport}) => {
   const today = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)}-${currentDate.getDate()}`
   const [date, setDate] = useState<string>(today)
   return (
-    <div className="main-container">Current{date}
+    <div className="main-container">
       <MainLeft setDate={setDate}/>
       <MatchList date={date} sport={sport} />
       <MainRight />

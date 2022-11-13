@@ -1,3 +1,5 @@
+import './bar.css'
+
 const Footer: React.FC = () => {
   return (
     <div>

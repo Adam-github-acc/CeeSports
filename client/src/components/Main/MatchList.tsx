@@ -8,29 +8,6 @@ const MatchList: React.FC<any> = ({date, sport}) => {
   const [matches, setMatches] = useState<Props[] | false>(false);
   const [leagueIds, setLeagueIds] = useState <number[]>();
   const newArr:number[] = [];
-  let res:Props[];
-  async function logger2() {
-    const response:{success:string, data:Props[]} = await readByDate('football', '2021-04-08')
-    setMatches(response.data)
-    console.log(response.data)
-    const leagueIdSet = new Set<number>();
-    if(response.data) res = response.data.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
-    console.log(res)
-    for(let i = 0; i < res.length; i++) {
-      leagueIdSet.add(res[i].leagueId);
-    }
-    const leagueIdArray:number[] = Array.from(leagueIdSet);
-    setMatches(res);
-    setLeagueIds(leagueIdArray);
-    if(matches) {
-      console.log(matches)
-      await create(matches);
-    }
-  }
-  async function logger() {
-    console.log(matches)
-    console.log(leagueIds)
-  }
   useEffect(() => {
      handleMatches()
   }, [date])
@@ -97,7 +74,7 @@ const MatchList: React.FC<any> = ({date, sport}) => {
       } else if (sport === 'basketball'){
         const api = await readApiByDate(sport, url)
           .catch(console.error);
-        const result:Props[] = api.response.map((res) => {
+        const result:Props[] = api.response.map((res:any) => {
           return {
             sport: sport,
             date: date,
@@ -125,9 +102,6 @@ const MatchList: React.FC<any> = ({date, sport}) => {
   //using filter to chose specific league
   return (
     <div className="match-list">
-      <div>Sport: {sport}</div>
-      <div onClick={logger2}>Hello1</div>
-      <div onClick={logger}>Hello2</div>
       <div>{leagueIds && leagueIds.map((id:number) => (
           <div key={id}>
             <div>{matches && matches.map((item:Props) => (
