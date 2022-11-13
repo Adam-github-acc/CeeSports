@@ -35,12 +35,13 @@ export const readByDate = async (sport:string, date:string) => {
 }
 
 export const readApiByDate = async (sport:string, url:string) => {
+  let options
   switch(sport) {
     case 'basketball':
-    var options = basketball;
+    options = basketball;
     break
     case 'football':
-    var options = football;
+    options = football;
     break
   }
   const response = await fetch(url, options)
