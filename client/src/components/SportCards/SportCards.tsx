@@ -2,9 +2,9 @@ import Card from "./Card";
 
 const SportsCards: React.FC<any> = ({setSport}) => {
   const sportArray = [['Football', 'football'],
-    ['Basketball', 'basketball'], ['Tennis', 'tennis'],
+    ['Basketball', 'basketball'], ['Hockey', 'hockey'],
     ['Baseball', 'baseball'], ['Handball', 'handball'],
-    ['American Football', 'american-football']]
+    ['Rugby', 'rugby']]
   return (
     <div>
       <div id="cards">

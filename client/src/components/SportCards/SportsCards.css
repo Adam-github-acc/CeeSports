@@ -4,8 +4,8 @@
 .card > .basketball {
   background-image: url("./../../pictures/basketball.jpeg");
 }
-.card > .tennis {
-  background-image: url("./../../pictures/tennis.jpeg");
+.card > .hockey {
+  background-image: url("./../../pictures/hockey.jpeg");
 }
 .card > .handball {
   background-image: url("./../../pictures/handball.jpeg");
@@ -13,8 +13,8 @@
 .card > .baseball {
   background-image: url("./../../pictures/baseball.jpeg");
 }
-.card > .american-football {
-  background-image: url("./../../pictures/american-football.jpeg");
+.card > .rugby {
+  background-image: url("./../../pictures/rugby.jpeg");
 }
 
 body {

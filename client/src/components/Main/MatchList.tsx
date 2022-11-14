@@ -33,15 +33,15 @@ const MatchList: React.FC<any> = ({date, sport}) => {
         case 'handball':
         url = `https://api-handball.p.rapidapi.com/games?date=${date}`
         break
-        /* case 'basketball':
+        case 'rugby':
+        url = `https://api-rugby.p.rapidapi.com/games?date=${date}`
+        break
+        case 'hockey':
         url = `https://api-nba-v1.p.rapidapi.com/games?date=${date}`
         break
-        case 'basketball':
+        case 'baseball':
         url = `https://api-nba-v1.p.rapidapi.com/games?date=${date}`
         break
-        case 'basketball':
-        url = `https://api-nba-v1.p.rapidapi.com/games?date=${date}`
-        break */
       }
       const api = await readApiByDate(sport, url)
           .catch(console.error);
@@ -87,7 +87,7 @@ const MatchList: React.FC<any> = ({date, sport}) => {
           }
         })
         updateMatchList(result);
-      } else if (sport === 'handball'){
+      }  else {
         const result:Props[] = api.response.map((res:any) => {
           return {
             sport: sport,
@@ -108,70 +108,7 @@ const MatchList: React.FC<any> = ({date, sport}) => {
           }
         })
         updateMatchList(result);
-      } /* else if (sport === 'basketball'){
-        const result:Props[] = api.response.map((res:any) => {
-          return {
-            sport: sport,
-            date: date,
-            time: res.date.start,
-            matchId: res.id,
-            referee: res.officials.join(' '),
-            stadium: res.arena.name,
-            city: res.arena.city,
-            league: 'NBA',
-            leagueId: 1,
-            leagueLogo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/800px-National_Basketball_Association_logo.svg.png',
-            country: res.arena.country,
-            hometeam: res.teams.home.name,
-            hometeamLogo: res.teams.home.logo,
-            awayteam: res.teams.visitors.name,
-            awayteamLogo: res.teams.visitors.logo,
-          }
-        })
-        updateMatchList(result);
-      } else if (sport === 'basketball'){
-        const result:Props[] = api.response.map((res:any) => {
-          return {
-            sport: sport,
-            date: date,
-            time: res.date.start,
-            matchId: res.id,
-            referee: res.officials.join(' '),
-            stadium: res.arena.name,
-            city: res.arena.city,
-            league: 'NBA',
-            leagueId: 1,
-            leagueLogo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/800px-National_Basketball_Association_logo.svg.png',
-            country: res.arena.country,
-            hometeam: res.teams.home.name,
-            hometeamLogo: res.teams.home.logo,
-            awayteam: res.teams.visitors.name,
-            awayteamLogo: res.teams.visitors.logo,
-          }
-        })
-        updateMatchList(result);
-      } else if (sport === 'basketball'){
-        const result:Props[] = api.response.map((res:any) => {
-          return {
-            sport: sport,
-            date: date,
-            time: res.date.start,
-            matchId: res.id,
-            referee: res.officials.join(' '),
-            stadium: res.arena.name,
-            city: res.arena.city,
-            league: 'NBA',
-            leagueId: 1,
-            leagueLogo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/800px-National_Basketball_Association_logo.svg.png',
-            country: res.arena.country,
-            hometeam: res.teams.home.name,
-            hometeamLogo: res.teams.home.logo,
-            awayteam: res.teams.visitors.name,
-            awayteamLogo: res.teams.visitors.logo,
-          }
-        })
-        updateMatchList(result);
-      } */
+      }
     }
   }
   const createLeagueIdArray = (res:Props[]):number[] => {
