@@ -3,7 +3,7 @@
   flex-direction: row;
 }
 .match-list {
-  width: 40vw;
+  width: 60%;
   box-sizing: border-box;
   border-radius: 1rem;
 }
@@ -11,12 +11,12 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 30vw;
+  width: 40%;
 }
 .main-right {
   display: flex;
   flex-direction: column;
-  width: 30vw;
+  width: 40vw;
 }
 .calendar {
   border-radius: 1rem;
@@ -32,4 +32,28 @@
 }
 abbr {
   color: white;
+}
+.small-screen{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+/* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
+
+@media(max-width: 768px) {
+  .main-left {
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+  .match-list {
+    width: 80%;
+    margin: auto;
+  }
+}
+@media(max-width: 500px) {
+  .match-list {
+    width: 100%;
+    margin: auto;
+  }
 }

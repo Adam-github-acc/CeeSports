@@ -16,6 +16,13 @@ const basketball = {
 		'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
 	}
 };
+const handball = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+		'X-RapidAPI-Host': 'api-handball.p.rapidapi.com'
+	}
+};
 
 export const create = async (data:Props[]) => {
   fetch(`${url}`, {
@@ -42,6 +49,9 @@ export const readApiByDate = async (sport:string, url:string) => {
     break
     case 'football':
     options = football;
+    break
+    case 'handball':
+    options = handball;
     break
   }
   const response = await fetch(url, options)
