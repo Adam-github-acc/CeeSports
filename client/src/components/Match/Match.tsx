@@ -5,7 +5,7 @@ import './Match.css'
 const Match: React.FC<Props | any> = ({item}) => {
   return (
     <div className="match">
-      <div className="match-time">{moment(item.time).format('h:mm')}</div>
+      <div className="match-time">{moment(item.time).format('HH:mm ')}</div>
       <div>
         <div className="team-header">
           <img className="team-logo" src={item.hometeamLogo} alt={item.hometeam} />

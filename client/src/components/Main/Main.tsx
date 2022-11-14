@@ -10,7 +10,7 @@ const Main: React.FC<any> = ({sport}) => {
   const [date, setDate] = useState<string>(today)
   return (
     <div className="main-container">
-      <MainLeft setDate={setDate}/>
+      <MainLeft setDate={setDate} />
       <MatchList date={date} sport={sport} />
       <MainRight />
     </div>

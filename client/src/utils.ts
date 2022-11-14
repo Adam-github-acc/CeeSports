@@ -5,14 +5,14 @@ const url = 'http://localhost:3000/api/events/'
 const football = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Key': '258d912fcbmsh6a94172ae233657p1c15e1jsnb90aeed80941',
+    'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
     'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
   }
 };
 const basketball = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '258d912fcbmsh6a94172ae233657p1c15e1jsnb90aeed80941',
+		'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
 		'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
 	}
 };

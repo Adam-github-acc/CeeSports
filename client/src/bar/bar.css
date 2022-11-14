@@ -4,6 +4,10 @@
   font-size: 2rem;
   gap: 20%;
   background-color: var(--nav-color);
+  padding: 1.5%;
+  margin-bottom: 3%;
+  position: sticky;
+  top: 0px;
 }
 .footer {
   background-color: var(--nav-color);

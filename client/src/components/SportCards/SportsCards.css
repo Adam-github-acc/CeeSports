@@ -198,6 +198,7 @@ i {
   #cards {
     width: 100vw;
     grid-template-columns: 1fr;
+    gap: 0px;
   }
   .card {
     width: 100vw;
@@ -211,7 +212,7 @@ i {
 }
 
 @media(max-width: 320px) {
-  #card {
+  #cards {
     width: 100vw;
   }
   .card {
