@@ -6,7 +6,6 @@ import 'react-calendar/dist/Calendar.css';
 
 const MainLeft: React.FC<any> = ({setDate}) => {
   const [value, onChange] = useState(new Date());
-  const date = new Date();
   useEffect(() => {
     const date = `${value.getFullYear()}-${(value.getMonth() + 1)}-${value.getDate()}`
     setDate(date)
