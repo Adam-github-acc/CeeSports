@@ -37,10 +37,10 @@ const MatchList: React.FC<any> = ({date, sport}) => {
         url = `https://api-rugby.p.rapidapi.com/games?date=${date}`
         break
         case 'hockey':
-        url = `https://api-nba-v1.p.rapidapi.com/games?date=${date}`
+        url = `https://api-hockey.p.rapidapi.com/games/?date=${date}`
         break
         case 'baseball':
-        url = `https://api-nba-v1.p.rapidapi.com/games?date=${date}`
+        url = `https://api-baseball.p.rapidapi.com/games?date=${date}`
         break
       }
       const api = await readApiByDate(sport, url)

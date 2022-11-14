@@ -30,7 +30,20 @@ const rugby = {
 		'X-RapidAPI-Host': 'api-rugby.p.rapidapi.com'
 	}
 };
-
+const baseball = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+		'X-RapidAPI-Host': 'api-baseball.p.rapidapi.com'
+	}
+};
+const hockey = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+		'X-RapidAPI-Host': 'api-hockey.p.rapidapi.com'
+	}
+};
 export const create = async (data:Props[]) => {
   fetch(`${url}`, {
     method: 'POST',
@@ -63,12 +76,12 @@ export const readApiByDate = async (sport:string, url:string) => {
     case 'rugby':
     options = rugby;
     break
-    /* case 'hockey':
+    case 'hockey':
     options = hockey;
     break
     case 'baseball':
     options = baseball;
-    break */
+    break
   }
   const response = await fetch(url, options)
   const json = await response.json();
