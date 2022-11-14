@@ -10,7 +10,7 @@ app.use(express.json({limit: "10mb"}));
 app.use(express.urlencoded({limit: "10mb", extended: true}));
 app.use('/api/events', routes);
 
-const PORT: number | string = process.env.PORT || 3000;
+const PORT: number | string = process.env.PORT || 4000;
 
 app.get("/", (req: Request, res: Response) => {
   res.send(`Server is running on port: ${PORT} home`);

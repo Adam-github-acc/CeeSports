@@ -17,16 +17,17 @@ model Event {
   sport        String
   date         String
   time         String
-  matchId      Int?
+  matchId      Int
   referee      String?
   stadium      String?
   city         String?
-  league       String?
-  leagueId     Int?
-  leagueLogo   String?
-  country      String?
-  hometeam     String?
-  hometeamLogo String?
-  awayteam     String?
-  awayteamLogo String?
+  league       String
+  leagueId     Int
+  leagueLogo   String
+  country      String
+  countryLogo  String
+  hometeam     String
+  hometeamLogo String
+  awayteam     String
+  awayteamLogo String
 }
