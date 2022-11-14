@@ -6,7 +6,6 @@ const League: React.FC<Props | any> = ({item}) => {
     <div className="league-header">
       <img className="league-logo" src={item.leagueLogo} alt={item.league} />
       <div className="league-description">
-        <div className="league-country">{item.country}</div>
         <div className="league-league">{item.league}</div>
       </div>
     </div>

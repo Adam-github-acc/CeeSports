@@ -5,6 +5,7 @@ const SportsCards: React.FC<any> = ({setSport}) => {
     ['Basketball', 'basketball'], ['Hockey', 'hockey'],
     ['Baseball', 'baseball'], ['Handball', 'handball'],
     ['Rugby', 'rugby']]
+
   return (
     <div>
       <div id="cards">

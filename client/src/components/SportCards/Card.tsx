@@ -1,13 +1,27 @@
 import './SportsCards.css'
-import React from 'react';
+import React, { useRef } from 'react';
+import { useEffect } from 'react';
 
 const Card: React.FC<any> = ({setSport, cardName, photo}) => {
   function handleClick() {
     setSport(photo)
   }
+  const ref = useRef(null);
+  /* useEffect(() => {
+    const card = ref.current;
+    console.log('card', card);
+    card.addEventListener('mousemove', (e:MouseEvent) => {
+      const rect = card.getBoundingClientRect()
+      console.log(rect)
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top;
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    })
+  }, []); */
   return (
     <div>
-      <a className="card" onClick={handleClick}>
+      <a className="card" ref={ref} onClick={handleClick}>
         <div className={`card-content ${photo}`}>
           <div className="shader"></div>
           <div className="card-image">

@@ -14,9 +14,28 @@
   width: 40%;
 }
 .main-right {
+  background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   width: 40vw;
+}
+.country-list{
+  margin: 0 auto;
+  border: solid 1px gray;
+  border-radius: 1rem;
+  width: 70%;
+}
+.country-list-item {
+  margin: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+.country{
+  color:white;
 }
 .calendar {
   border-radius: 1rem;

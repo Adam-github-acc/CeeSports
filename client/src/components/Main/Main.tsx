@@ -9,6 +9,8 @@ const Main: React.FC<any> = ({sport}) => {
   const today = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)}-${currentDate.getDate()}`;
   const [date, setDate] = useState<string>(today);
   const [matches, setMatches] = useState(window.matchMedia("(min-width: 768px)").matches)
+  const [countries, setCountries] = useState <string[]>();
+  const [countryList, setCountryList] = useState <string[]>();
   useEffect(() => {
     window
     .matchMedia("(min-width: 768px)")
@@ -16,12 +18,14 @@ const Main: React.FC<any> = ({sport}) => {
   }, [matches]);
   return (
     <div className="main-container">
-      {matches &&<MainLeft setDate={setDate} />}
-      {matches &&<MatchList date={date} sport={sport} />}
-      {matches && <MainRight />}
-      {!matches && <div className="small-screen">
+      {matches && <MainLeft setDate={setDate} />}
+      {matches && <MatchList date={date} sport={sport} countries={countries} setCountries={setCountries} setCountryList={setCountryList} />}
+      {matches && countries && <MainRight setCountries={setCountries} countryList={countryList} />}
+      {!matches &&
+      <div className="small-screen">
         <MainLeft setDate={setDate} />
-        <MatchList date={date} sport={sport} /></div>}
+        <MatchList date={date} sport={sport} countries={countries} setCountries={setCountries} setCountryList={setCountryList} />
+      </div>}
     </div>
   );
 }

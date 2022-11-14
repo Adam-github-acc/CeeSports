@@ -3,24 +3,25 @@ import Match from "../Match/Match";
 import League from "../League/League";
 import { readByDate, create, readApiByDate } from "../../utils";
 import { useEffect, useState } from "react";
+import Country from "../Country/Country";
 
-const MatchList: React.FC<any> = ({date, sport}) => {
+const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCountryList}) => {
   const [matches, setMatches] = useState<Props[] | false>(false);
   const [leagueIds, setLeagueIds] = useState <number[]>();
   const newArr:number[] = [];
-  /* const sportURL:{'football':string} = {
-    'football': `https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date}`
-  } */
+  const countryArr:string[] = [];
   useEffect(() => {
+    console.log('1')
      handleMatches()
   }, [date])
   async function handleMatches() {
     let url = '';
+    console.log('3')
     const response:{success:string, data:Props[]} = await readByDate(sport, date);
+    console.log('4')
     setMatches(response.data)
     if(response.data) var res:Props[] = response.data.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
-    setLeagueIds(createLeagueIdArray(res));
-    setMatches(res);
+    updateMatchList(res);
     if(response.data[0]) setMatches(response.data);
     else {
       switch(sport) {
@@ -43,10 +44,12 @@ const MatchList: React.FC<any> = ({date, sport}) => {
         url = `https://api-baseball.p.rapidapi.com/games?date=${date}`
         break
       }
+      console.log('2')
       const api = await readApiByDate(sport, url)
           .catch(console.error);
+      console.log('api', api)
       if(sport === 'football') {
-        const result:Props[] = api.response.map((res: { fixture: { date: any; id: any; referee: any; venue: { name: any; city: any; }; }; league: { name: any; id: any; logo: any; country: any; }; teams: { home: { name: any; logo: any; }; away: { name: any; logo: any; }; }; }) => {
+        const result:Props[] = api.response.map((res: { fixture: { date: any; id: any; referee: any; venue: { name: any; city: any; }; }; league: { name: any; id: any; logo: any; country: any; flag:any }; teams: { home: { name: any; logo: any; }; away: { name: any; logo: any; }; }; }) => {
           return {
             sport: sport,
             date: date,
@@ -59,6 +62,7 @@ const MatchList: React.FC<any> = ({date, sport}) => {
             leagueId: res.league.id,
             leagueLogo: res.league.logo,
             country: res.league.country,
+            countryLogo: res.league.flag,
             hometeam: res.teams.home.name,
             hometeamLogo: res.teams.home.logo,
             awayteam: res.teams.away.name,
@@ -66,6 +70,7 @@ const MatchList: React.FC<any> = ({date, sport}) => {
           }
         })
         updateMatchList(result);
+        create(result);
       } else if (sport === 'basketball'){
         const result:Props[] = api.response.map((res:any) => {
           return {
@@ -80,6 +85,7 @@ const MatchList: React.FC<any> = ({date, sport}) => {
             leagueId: 1,
             leagueLogo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/800px-National_Basketball_Association_logo.svg.png',
             country: res.arena.country,
+            countryLogo: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1600px-Flag_of_the_United_States.svg.png?20151118161041',
             hometeam: res.teams.home.name,
             hometeamLogo: res.teams.home.logo,
             awayteam: res.teams.visitors.name,
@@ -87,6 +93,7 @@ const MatchList: React.FC<any> = ({date, sport}) => {
           }
         })
         updateMatchList(result);
+        create(result);
       }  else {
         const result:Props[] = api.response.map((res:any) => {
           return {
@@ -101,6 +108,7 @@ const MatchList: React.FC<any> = ({date, sport}) => {
             leagueId: res.league.id,
             leagueLogo: res.league.logo,
             country: res.country.name,
+            countryLogo: res.country.flag,
             hometeam: res.teams.home.name,
             hometeamLogo: res.teams.home.logo,
             awayteam: res.teams.away.name,
@@ -108,8 +116,23 @@ const MatchList: React.FC<any> = ({date, sport}) => {
           }
         })
         updateMatchList(result);
+        create(result);
       }
     }
+  }
+  const createCountryArray = (res:Props[]):string[] => {
+    const countrySet = new Set<string>();
+    for(let i = 0; i < res.length; i++) {
+      countrySet.add(res[i].country);
+    }
+    return Array.from(countrySet);
+  }
+  const createCountryListArray = (res:Props[]):string[] => {
+    const countrySet = new Set<string>();
+    for(let i = 0; i < res.length; i++) {
+      countrySet.add(`${res[i].country}, ${res[i].countryLogo}`);
+    }
+    return Array.from(countrySet);
   }
   const createLeagueIdArray = (res:Props[]):number[] => {
     const leagueIdSet = new Set<number>();
@@ -120,20 +143,29 @@ const MatchList: React.FC<any> = ({date, sport}) => {
   }
   const updateMatchList = (res:Props[]):void => {
     setLeagueIds(createLeagueIdArray(res));
+    setCountries(createCountryArray(res));
+    setCountryList(createCountryListArray(res));
     setMatches(res);
-    create(res);
   }
   //using filter to chose specific league
+  //set countryArray to only contain current country
   return (
     <div className="match-list">
-      <div>{leagueIds && leagueIds.map((id:number) => (
+      <div>{countries && countries.map((country:string) => (
+          <div key={country}>
+            <div>{matches && matches.map((item:Props) => (
+              country === item.country && !countryArr.find(a => a === country) && countryArr.push(country) && <Country country={item} />
+            ))}</div>
+            <div>{leagueIds && leagueIds.map((id:number) => (
           <div key={id}>
             <div>{matches && matches.map((item:Props) => (
-              id === item.leagueId && !newArr.find(a => a === id) && newArr.push(id) && <League item={item} />
+              id === item.leagueId && country === item.country && !newArr.find(a => a === id) && newArr.push(id) && <League item={item} />
             ))}</div>
             <div>{matches && matches.map((item:Props) => (
-              id === item.leagueId && <Match item={item} key={item.matchId} />
+              id === item.leagueId && country === item.country && <Match item={item} key={item.matchId} />
             ))}</div>
+          </div>
+        ))}</div>
           </div>
         ))}</div>
     </div>

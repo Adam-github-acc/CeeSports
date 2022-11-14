@@ -1,6 +1,6 @@
 import { Props } from "./types"
 
-const url = 'http://localhost:3000/api/events/'
+const url = 'http://localhost:4000/api/events/'
 
 const football = {
   method: 'GET',
@@ -56,7 +56,6 @@ export const create = async (data:Props[]) => {
 
 export const readByDate = async (sport:string, date:string) => {
   const event = await fetch(`${url}${sport}/${date}`);
-  console.log(date)
   const json = await event.json();
   return json;
 }

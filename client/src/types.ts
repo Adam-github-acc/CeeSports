@@ -10,6 +10,7 @@ export interface Props {
     leagueId:number
     leagueLogo:string
     country:string
+    countryLogo:string
     hometeam:string
     hometeamLogo:string
     awayteam:string

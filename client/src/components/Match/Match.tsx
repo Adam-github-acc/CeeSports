@@ -8,11 +8,11 @@ const Match: React.FC<Props | any> = ({item}) => {
       <div className="match-time">{moment(item.time).format('HH:mm ')}</div>
       <div>
         <div className="team-header">
-          <img className="team-logo" src={item.hometeamLogo} alt={item.hometeam} />
+          <img className="team-logo" src={item.hometeamLogo} alt="" />
           <div>{item.hometeam}</div>
         </div>
         <div className="team-header">
-          <img className="team-logo" src={item.awayteamLogo} alt={item.awayteam} />
+          <img className="team-logo" src={item.awayteamLogo} alt="" />
           <div>{item.awayteam}</div>
         </div>
       </div>

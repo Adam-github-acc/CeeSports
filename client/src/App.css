@@ -1,5 +1,12 @@
 :root {
   --bg-color: rgb(40, 42, 39);
-  --nav-color: #0063c6;
-  --league-color: #0063c6;
+  --primary-color: #0063c6;
+  --secondary-color: #3bffde;
+  --text-color: rgb(240, 240, 240);
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+}
+html {
+  font-weight: bold;
+  cursor: default;
 }
