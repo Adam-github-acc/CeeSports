@@ -23,11 +23,11 @@ model Event {
   city         String?
   league       String
   leagueId     Int
-  leagueLogo   String
+  leagueLogo   String?
   country      String
-  countryLogo  String
+  countryLogo  String?
   hometeam     String
-  hometeamLogo String
+  hometeamLogo String?
   awayteam     String
-  awayteamLogo String
+  awayteamLogo String?
 }
