@@ -1,6 +1,6 @@
 .league-logo {
-  width: 2rem;
-  height: 2rem;
+  height: 2.5rem;
+  margin-right: 1rem;
 }
 
 .league-header {
@@ -8,13 +8,12 @@
   flex-direction: row;
   align-items: center;
   background-color: var(--primary-color);
-  border: 1px gray solid;
-}
-.league-country {
-  color: rgb(132, 132, 132);
+  border: 1px  solid var(--border-color);
+  color: var(--text-color-2);
 }
 .country-header{
   background-color: var(--secondary-color);
+  border: 1px solid var(--border-color);
 }
 .country {
   font-size: 1.7rem;

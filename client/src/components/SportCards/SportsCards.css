@@ -18,10 +18,13 @@
 }
 
 body {
-  background-color: var(--bg-color);
+  background: var(--bg-color);
   margin: 0px;
   padding: 0px;
-  color: white;
+  color: var(--text-color-2);
+}
+.sportcards{
+  background: var(--bg-color);
 }
 .container {
   align-items: center;

@@ -20,11 +20,11 @@ const Main: React.FC<any> = ({sport}) => {
     <div className="main-container">
       {matches && <MainLeft setDate={setDate} />}
       {matches && <MatchList date={date} sport={sport} countries={countries} setCountries={setCountries} setCountryList={setCountryList} />}
-      {matches && countries && <MainRight setCountries={setCountries} countryList={countryList} />}
+      {matches && countries && <MainRight countries={countries} setCountries={setCountries} countryList={countryList} />}
       {!matches &&
       <div className="small-screen">
         <MainLeft setDate={setDate} />
-        <MatchList date={date} sport={sport} countries={countries} setCountries={setCountries} setCountryList={setCountryList} />
+        <MatchList date={date} sport={sport} countries={countries} setCountries={setCountries} setCountryList={setCountryList}/>
       </div>}
     </div>
   );

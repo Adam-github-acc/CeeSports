@@ -4,8 +4,8 @@ const CountryList: React.FC<any> = ({setCountries, country}) => {
   const handleClick = () => setCountries([countryArray[0]])
   return (
     <div className="country-list-item" onClick={handleClick}>
-      <img className="league-logo" src={countryArray[1]}></img>
-      <div>{countryArray[0]}</div>
+      <img className="country-flag" src={countryArray[1]}></img>
+      <div className="country-text">{countryArray[0]}</div>
     </div>
   );
 }

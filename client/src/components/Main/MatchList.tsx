@@ -11,14 +11,11 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
   const newArr:number[] = [];
   const countryArr:string[] = [];
   useEffect(() => {
-    console.log('1')
      handleMatches()
   }, [date])
   async function handleMatches() {
     let url = '';
-    console.log('3')
     const response:{success:string, data:Props[]} = await readByDate(sport, date);
-    console.log('4')
     setMatches(response.data)
     if(response.data) var res:Props[] = response.data.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
     updateMatchList(res);
@@ -44,10 +41,8 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
         url = `https://api-baseball.p.rapidapi.com/games?date=${date}`
         break
       }
-      console.log('2')
       const api = await readApiByDate(sport, url)
           .catch(console.error);
-      console.log('api', api)
       if(sport === 'football') {
         const result:Props[] = api.response.map((res: { fixture: { date: any; id: any; referee: any; venue: { name: any; city: any; }; }; league: { name: any; id: any; logo: any; country: any; flag:any }; teams: { home: { name: any; logo: any; }; away: { name: any; logo: any; }; }; }) => {
           return {
@@ -84,7 +79,7 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
             league: 'NBA',
             leagueId: 1,
             leagueLogo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/800px-National_Basketball_Association_logo.svg.png',
-            country: res.arena.country,
+            country: 'USA',
             countryLogo: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1600px-Flag_of_the_United_States.svg.png?20151118161041',
             hometeam: res.teams.home.name,
             hometeamLogo: res.teams.home.logo,
@@ -130,7 +125,9 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
   const createCountryListArray = (res:Props[]):string[] => {
     const countrySet = new Set<string>();
     for(let i = 0; i < res.length; i++) {
-      countrySet.add(`${res[i].country}, ${res[i].countryLogo}`);
+      if(res[i].country === 'World') {
+        countrySet.add(`${res[i].country}, https://cdn.pixabay.com/photo/2016/11/05/21/14/cartography-1801564__480.png`);
+      } else countrySet.add(`${res[i].country}, ${res[i].countryLogo}`);
     }
     return Array.from(countrySet);
   }

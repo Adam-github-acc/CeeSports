@@ -1,6 +1,15 @@
 .main-container {
   display: flex;
   flex-direction: row;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding-top: 3%;
+}
+.country-flag {
+  width: 2rem;
+}
+.country-text {
+  font-size: 1rem;
 }
 .match-list {
   width: 60%;
@@ -11,10 +20,10 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 40%;
+  width: 30%;
+  padding: 0 2%;
 }
 .main-right {
-  background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   width: 40vw;
@@ -23,7 +32,7 @@
   margin: 0 auto;
   border: solid 1px gray;
   border-radius: 1rem;
-  width: 70%;
+  width: 80%;
 }
 .country-list-item {
   margin: 1rem;
@@ -35,30 +44,47 @@
   font-size: 1.2rem;
 }
 .country{
-  color:white;
+  color:var(--text-color-2);
+}
+.country-description {
+  display: flex;
+  flex-direction: row;
 }
 .calendar {
   border-radius: 1rem;
   background-color: var(--bg-color);
+  position: sticky;
+  top: 11%;
 }
-
+.react-calendar__tile:enabled:hover {
+  background-color: var(--primary-color);
+  opacity: 0.4;
+}
 .react-calendar__navigation__arrow {
   border-radius: 1rem;
-  color: white;
+  color: var(--text-color);
 }
 .react-calendar__tile {
   border-radius: 1rem;
 }
+.react-calendar__navigation__label__labelText {
+  color: var(--text-color);
+}
+.react-calendar__tile--now {
+  background: var(--primary-color);
+  opacity: 0.7;
+}
+.react-calendar__tile--rangeEnd {
+  opacity: 1;
+}
 abbr {
-  color: white;
+  color: var(--text-color);
 }
 .small-screen{
   display: flex;
   flex-direction: column;
   width: 100vw;
 }
-
-/* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
 
 @media(max-width: 768px) {
   .main-left {
