@@ -50,7 +50,7 @@ const MatchList: React.FC<Props> = ({date, sport, countries, setCountries, setCo
       const api = await readApiByDate(sport, url)
           .catch(console.error);
       if(sport === 'football') {
-        const result:data[] = api.response.map((res: { fixture: { date: any; id: any; referee: any; venue: { name: any; city: any; }; }; league: { name: any; id: any; logo: any; country: any; flag:any }; teams: { home: { name: any; logo: any; }; away: { name: any; logo: any; }; }; }) => {
+        const result:data[] = api.response.map((res: { fixture: { date: string; id: number; referee: string | null; venue: { name: string; city: string; }; }; league: { name: string; id: number; logo: string; country: string; flag: string; }; teams: { home: { name: string; logo: string; }; away: { name: string; logo: string; }; }; }) => {
           return {
             sport: sport,
             date: date,
@@ -73,7 +73,7 @@ const MatchList: React.FC<Props> = ({date, sport, countries, setCountries, setCo
         updateMatchList(result);
         create(result);
       } else if (sport === 'basketball'){
-        const result:data[] = api.response.map((res:any) => {
+        const result:data[] = api.response.map((res: { date: { start: string; }; id: number; officials: string[]; arena: { name: string; city: string; }; teams: { home: { name: string; logo: string; }; visitors: { name: string; logo: string; }; }; }) => {
           return {
             sport: sport,
             date: date,
@@ -96,7 +96,7 @@ const MatchList: React.FC<Props> = ({date, sport, countries, setCountries, setCo
         updateMatchList(result);
         create(result);
       }  else {
-        const result:data[] = api.response.map((res:any) => {
+        const result:data[] = api.response.map((res: { date: string; id: number; league: { name: string; id: number; logo: string; }; country: { name: string; flag: string; }; teams: { home: { name: string; logo: string; }; away: { name: string; logo: string; }; }; }) => {
           return {
             sport: sport,
             date: date,
