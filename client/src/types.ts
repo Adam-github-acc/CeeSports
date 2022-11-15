@@ -1,5 +1,5 @@
-export interface Props {
-    //sport:string
+export interface data {
+    sport:string
     date:string
     time:string
     matchId:number

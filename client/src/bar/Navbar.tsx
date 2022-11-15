@@ -1,7 +1,12 @@
-import { useState } from "react";
 import './bar.css'
 
-const Navbar: React.FC<any> = ({setSport, setDarkmode, darkmode}) => {
+type Props = {
+  setSport:React.Dispatch<React.SetStateAction<string>>,
+  setDarkmode:React.Dispatch<React.SetStateAction<boolean>>,
+  darkmode:boolean
+};
+
+const Navbar: React.FC<Props> = ({setSport, setDarkmode, darkmode}) => {
   const handleClick = () => setSport('');
   const handleDarkmode = () => setDarkmode(!darkmode);
   return (

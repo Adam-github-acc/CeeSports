@@ -1,8 +1,11 @@
 import moment from "moment";
-import { Props } from "../../types";
+import { data } from "../../types";
 import './Match.css'
 
-const Match: React.FC<Props | any> = ({item}) => {
+type Props = {
+  item:data
+};
+const Match: React.FC<Props> = ({item}) => {
   return (
     <div className="match">
       <div className="match-time">{moment(item.time).format('HH:mm ')}</div>

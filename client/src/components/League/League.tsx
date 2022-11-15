@@ -1,7 +1,9 @@
-import { Props } from "../../types";
+import { data } from "../../types";
 import './League.css'
-
-const League: React.FC<Props | any> = ({item}) => {
+type Props = {
+  item:data
+};
+const League: React.FC<Props> = ({item}) => {
   return (
     <div className="league-header">
       <img className="league-logo" src={item.leagueLogo} alt={item.league} />

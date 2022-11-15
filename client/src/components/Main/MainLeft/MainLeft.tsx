@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-
-const MainLeft: React.FC<any> = ({setDate}) => {
+type Props = {
+  setDate:React.Dispatch<React.SetStateAction<string>>
+};
+const MainLeft: React.FC<Props> = ({setDate}) => {
   const [value, onChange] = useState(new Date());
   useEffect(() => {
     const date = `${value.getFullYear()}-${(value.getMonth() + 1)}-${value.getDate()}`

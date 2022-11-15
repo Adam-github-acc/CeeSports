@@ -1,12 +1,18 @@
-import { Props } from "../../types";
+import { data } from "../../types";
 import Match from "../Match/Match";
 import League from "../League/League";
 import { readByDate, create, readApiByDate } from "../../utils";
 import { useEffect, useState } from "react";
 import Country from "../Country/Country";
-
-const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCountryList}) => {
-  const [matches, setMatches] = useState<Props[] | false>(false);
+type Props = {
+  date:string
+  sport:string
+  countries:string[]
+  setCountries:React.Dispatch<React.SetStateAction<string[]>>
+  setCountryList:React.Dispatch<React.SetStateAction<string[]>>
+};
+const MatchList: React.FC<Props> = ({date, sport, countries, setCountries, setCountryList}) => {
+  const [matches, setMatches] = useState<data[] | false>(false);
   const [leagueIds, setLeagueIds] = useState <number[]>();
   const newArr:number[] = [];
   const countryArr:string[] = [];
@@ -15,9 +21,9 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
   }, [date])
   async function handleMatches() {
     let url = '';
-    const response:{success:string, data:Props[]} = await readByDate(sport, date);
+    const response:{success:string, data:data[]} = await readByDate(sport, date);
     setMatches(response.data)
-    if(response.data) var res:Props[] = response.data.sort((a:Props, b:Props) => a.leagueId - b.leagueId)
+    if(response.data) var res:data[] = response.data.sort((a:data, b:data) => a.leagueId - b.leagueId)
     updateMatchList(res);
     if(response.data[0]) setMatches(response.data);
     else {
@@ -44,7 +50,7 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
       const api = await readApiByDate(sport, url)
           .catch(console.error);
       if(sport === 'football') {
-        const result:Props[] = api.response.map((res: { fixture: { date: any; id: any; referee: any; venue: { name: any; city: any; }; }; league: { name: any; id: any; logo: any; country: any; flag:any }; teams: { home: { name: any; logo: any; }; away: { name: any; logo: any; }; }; }) => {
+        const result:data[] = api.response.map((res: { fixture: { date: any; id: any; referee: any; venue: { name: any; city: any; }; }; league: { name: any; id: any; logo: any; country: any; flag:any }; teams: { home: { name: any; logo: any; }; away: { name: any; logo: any; }; }; }) => {
           return {
             sport: sport,
             date: date,
@@ -67,7 +73,7 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
         updateMatchList(result);
         create(result);
       } else if (sport === 'basketball'){
-        const result:Props[] = api.response.map((res:any) => {
+        const result:data[] = api.response.map((res:any) => {
           return {
             sport: sport,
             date: date,
@@ -90,7 +96,7 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
         updateMatchList(result);
         create(result);
       }  else {
-        const result:Props[] = api.response.map((res:any) => {
+        const result:data[] = api.response.map((res:any) => {
           return {
             sport: sport,
             date: date,
@@ -115,14 +121,14 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
       }
     }
   }
-  const createCountryArray = (res:Props[]):string[] => {
+  const createCountryArray = (res:data[]):string[] => {
     const countrySet = new Set<string>();
     for(let i = 0; i < res.length; i++) {
       countrySet.add(res[i].country);
     }
     return Array.from(countrySet);
   }
-  const createCountryListArray = (res:Props[]):string[] => {
+  const createCountryListArray = (res:data[]):string[] => {
     const countrySet = new Set<string>();
     for(let i = 0; i < res.length; i++) {
       if(res[i].country === 'World') {
@@ -131,14 +137,14 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
     }
     return Array.from(countrySet);
   }
-  const createLeagueIdArray = (res:Props[]):number[] => {
+  const createLeagueIdArray = (res:data[]):number[] => {
     const leagueIdSet = new Set<number>();
     for(let i = 0; i < res.length; i++) {
       leagueIdSet.add(res[i].leagueId);
     }
     return Array.from(leagueIdSet);
   }
-  const updateMatchList = (res:Props[]):void => {
+  const updateMatchList = (res:data[]):void => {
     setLeagueIds(createLeagueIdArray(res));
     setCountries(createCountryArray(res));
     setCountryList(createCountryListArray(res));
@@ -150,15 +156,15 @@ const MatchList: React.FC<any> = ({date, sport, countries, setCountries, setCoun
     <div className="match-list">
       <div>{countries && countries.map((country:string) => (
           <div key={country}>
-            <div>{matches && matches.map((item:Props) => (
-              country === item.country && !countryArr.find(a => a === country) && countryArr.push(country) && <Country country={item} />
+            <div>{matches && matches.map((item:data) => (
+              country === item.country && !countryArr.find(a => a === country) && countryArr.push(country) && <Country item={item} />
             ))}</div>
             <div>{leagueIds && leagueIds.map((id:number) => (
           <div key={id}>
-            <div>{matches && matches.map((item:Props) => (
+            <div>{matches && matches.map((item:data) => (
               id === item.leagueId && country === item.country && !newArr.find(a => a === id) && newArr.push(id) && <League item={item} />
             ))}</div>
-            <div>{matches && matches.map((item:Props) => (
+            <div>{matches && matches.map((item:data) => (
               id === item.leagueId && country === item.country && <Match item={item} key={item.matchId} />
             ))}</div>
           </div>

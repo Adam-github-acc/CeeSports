@@ -1,6 +1,9 @@
 import Card from "./Card";
 
-const SportsCards: React.FC<any> = ({setSport}) => {
+type Props = {
+  setSport:React.Dispatch<React.SetStateAction<string>>
+};
+const SportsCards: React.FC<Props> = ({setSport}) => {
   const sportArray = [['Football', 'football'],
     ['Basketball', 'basketball'], ['Hockey', 'hockey'],
     ['Baseball', 'baseball'], ['Handball', 'handball'],

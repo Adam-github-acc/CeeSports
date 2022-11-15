@@ -1,5 +1,8 @@
-
-const CountryList: React.FC<any> = ({setCountries, country}) => {
+type Props = {
+  country:string
+  setCountries:React.Dispatch<React.SetStateAction<string[]>>
+};
+const CountryList: React.FC<Props> = ({setCountries, country}) => {
   const countryArray = country.split(", ")
   const handleClick = () => setCountries([countryArray[0]])
   return (

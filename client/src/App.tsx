@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Footer from "./bar/Footer";
 import Main from "./components/Main/Main";
 import Navbar from "./bar/Navbar";
 import SportsCards from "./components/SportCards/SportCards";

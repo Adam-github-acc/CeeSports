@@ -23,9 +23,6 @@ body {
   padding: 0px;
   color: var(--text-color-2);
 }
-.sportcards{
-  background: var(--bg-color);
-}
 .container {
   align-items: center;
   background-color: var(--bg-color);

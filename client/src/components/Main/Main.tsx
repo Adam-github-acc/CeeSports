@@ -3,8 +3,10 @@ import MainLeft from "./MainLeft/MainLeft";
 import MainRight from "./MainRight/MainRight";
 import MatchList from "./MatchList";
 import './Main.css'
-
-const Main: React.FC<any> = ({sport}) => {
+type Props = {
+  sport:string
+};
+const Main: React.FC<Props> = ({sport}) => {
   const currentDate = new Date();
   const today = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)}-${currentDate.getDate()}`;
   const [date, setDate] = useState<string>(today);
@@ -20,7 +22,7 @@ const Main: React.FC<any> = ({sport}) => {
     <div className="main-container">
       {matches && <MainLeft setDate={setDate} />}
       {matches && <MatchList date={date} sport={sport} countries={countries} setCountries={setCountries} setCountryList={setCountryList} />}
-      {matches && countries && <MainRight countries={countries} setCountries={setCountries} countryList={countryList} />}
+      {matches && countries && <MainRight setCountries={setCountries} countryList={countryList} />}
       {!matches &&
       <div className="small-screen">
         <MainLeft setDate={setDate} />

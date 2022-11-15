@@ -1,11 +1,14 @@
 import './../League/League.css'
-
-const Country: React.FC<any> = ({country}) => {
+import { data } from '../../types';
+type Props = {
+  item:data
+};
+const Country: React.FC<Props> = ({item}) => {
   return (
     <div className="country-header">
       <div className="country-description">
-        <img className="league-logo" src={country.countryLogo}></img>
-        <div className="country">{country.country}</div>
+        <img className="league-logo" src={item.countryLogo}></img>
+        <div className="country">{item.country}</div>
       </div>
     </div>
   );

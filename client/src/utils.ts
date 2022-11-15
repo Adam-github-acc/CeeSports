@@ -1,4 +1,4 @@
-import { Props } from "./types"
+import { data } from "./types"
 
 const url = 'http://localhost:4000/api/events/'
 
@@ -44,7 +44,7 @@ const hockey = {
 		'X-RapidAPI-Host': 'api-hockey.p.rapidapi.com'
 	}
 };
-export const create = async (data:Props[]) => {
+export const create = async (data:data[]) => {
   fetch(`${url}`, {
     method: 'POST',
     headers: {'Content-type' : 'application/json'},
