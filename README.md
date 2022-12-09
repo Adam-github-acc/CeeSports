@@ -12,11 +12,11 @@ cd server
 npm run docker:compose
 ```
 ## Environment variables
-###Server folder env
+### Server folder env
 DATABASE_URL=<database-url> Deafault: postgres://postgres:postgres@postgres:5432/events
 PORT=<port>                 Default: 4000
 
-###Client folder env
+### Client folder env
 REACT_APP_API_KEY=<RAPID-API-KEY>
 #### Needed subscriptions
 - https://rapidapi.com/api-sports/api/api-nba/
