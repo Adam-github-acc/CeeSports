@@ -13,11 +13,11 @@ npm run docker:compose
 ```
 ## Environment variables
 ### Server folder env
-DATABASE_URL=<database-url> Deafault: postgres://postgres:postgres@postgres:5432/events
-PORT=<port>                 Default: 4000
+DATABASE_URL: Deafault: postgres://postgres:postgres@postgres:5432/events
+PORT: Default: 4000
 
 ### Client folder env
-REACT_APP_API_KEY=<RAPID-API-KEY>
+REACT_APP_API_KEY: Your Rapid Api key
 #### Needed subscriptions
 - https://rapidapi.com/api-sports/api/api-nba/
 - https://rapidapi.com/api-sports/api/api-football/
