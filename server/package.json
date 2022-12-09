@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "prisma migrate dev --name init && prisma migrate dev &&ts-node index.ts"
+    "start": "prisma migrate dev --name init && prisma migrate dev &&ts-node index.ts",
+    "docker:compose": "docker-compose up --force-recreate --build -d"
   },
   "repository": {
     "type": "git",

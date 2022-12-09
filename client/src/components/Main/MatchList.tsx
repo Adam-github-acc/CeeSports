@@ -150,8 +150,6 @@ const MatchList: React.FC<Props> = ({date, sport, countries, setCountries, setCo
     setCountryList(createCountryListArray(res));
     setMatches(res);
   }
-  //using filter to chose specific league
-  //set countryArray to only contain current country
   return (
     <div className="match-list">
       <div>{countries && countries.map((country:string) => (
