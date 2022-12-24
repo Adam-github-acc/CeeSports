@@ -28,7 +28,7 @@
   flex-direction: column;
   width: 40vw;
 }
-.country-list{
+.country-list {
   margin: 0 auto;
   border: solid 1px gray;
   border-radius: 1rem;
@@ -43,8 +43,8 @@
   gap: 1rem;
   font-size: 1.2rem;
 }
-.country{
-  color:var(--text-color-2);
+.country {
+  color: var(--text-color-2);
 }
 .country-description {
   display: flex;
@@ -80,13 +80,13 @@
 abbr {
   color: var(--text-color);
 }
-.small-screen{
+.small-screen {
   display: flex;
   flex-direction: column;
   width: 100vw;
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .main-left {
     width: 100%;
     padding-bottom: 1rem;
@@ -96,7 +96,7 @@ abbr {
     margin: auto;
   }
 }
-@media(max-width: 500px) {
+@media (max-width: 500px) {
   .match-list {
     width: 100%;
     margin: auto;
