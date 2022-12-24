@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 services:
   postgres:
     image: postgres:15-alpine3.16
@@ -20,7 +20,7 @@ services:
     depends_on:
       - postgres
     ports:
-      - "5555:80"
+      - '5555:80'
     environment:
       PGADMIN_DEFAULT_EMAIL: CeeSports@pgadmin.org
       PGADMIN_DEFAULT_PASSWORD: admin
@@ -37,7 +37,7 @@ services:
     depends_on:
       - postgres
     ports:
-      - "4000:4000"
+      - '4000:4000'
     restart: always
 
   client:
@@ -48,7 +48,7 @@ services:
       dockerfile: Dockerfile
       context: ./../client
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - /app/node_modules
       - ./../client:/app

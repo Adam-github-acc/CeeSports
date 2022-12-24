@@ -1,7 +1,7 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 
-const { readAll, readByDate, createMany } = require('./controller')
+const { readAll, readByDate, createMany } = require('./controller');
 
 router.post('/', createMany);
 
