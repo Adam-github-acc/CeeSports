@@ -1,20 +1,20 @@
 .card > .football {
-  background-image: url("./../../pictures/football.jpeg");
+  background-image: url('./../../pictures/football.jpeg');
 }
 .card > .basketball {
-  background-image: url("./../../pictures/basketball.jpeg");
+  background-image: url('./../../pictures/basketball.jpeg');
 }
 .card > .hockey {
-  background-image: url("./../../pictures/hockey.jpeg");
+  background-image: url('./../../pictures/hockey.jpeg');
 }
 .card > .handball {
-  background-image: url("./../../pictures/handball.jpeg");
+  background-image: url('./../../pictures/handball.jpeg');
 }
 .card > .baseball {
-  background-image: url("./../../pictures/baseball.jpeg");
+  background-image: url('./../../pictures/baseball.jpeg');
 }
 .card > .rugby {
-  background-image: url("./../../pictures/rugby.jpeg");
+  background-image: url('./../../pictures/rugby.jpeg');
 }
 
 body {
@@ -66,7 +66,7 @@ body {
 .card::before,
 .card::after {
   border-radius: inherit;
-  content: "";
+  content: '';
   height: calc(100% + 2px);
   width: calc(100% + 2px);
   left: -1.5px;
@@ -76,7 +76,8 @@ body {
   transition: opacity 500ms;
 }
 
-.card::after, .shader{
+.card::after,
+.shader {
   background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y),
     rgba(255, 255, 255, 0.06),
@@ -85,7 +86,8 @@ body {
   z-index: 3;
 }
 
-.card::after, .shader{
+.card::after,
+.shader {
   background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y),
     rgba(255, 255, 255, 0.8),
@@ -109,8 +111,12 @@ body {
 .shader {
   transition: opacity 0.5s ease-out;
   opacity: 1;
-  background: rgb(0,0,0);
-  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 90%);
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.5) 90%
+  );
   border-radius: inherit;
   inset: 1px;
   position: absolute;
@@ -120,14 +126,18 @@ body {
   left: -1px;
   top: -1px;
 }
-  .card:hover .shader{
+.card:hover .shader {
   transition: opacity 0.6s ease-out;
   opacity: 0.5;
 }
 
-h1, h2, h3, h4, span {
+h1,
+h2,
+h3,
+h4,
+span {
   color: rgb(240, 240, 240);
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-weight: 400;
   margin: 0px;
 }
@@ -166,7 +176,7 @@ h1, h2, h3, h4, span {
   line-height: 20px;
 }
 
-@media(max-width: 1347px) {
+@media (max-width: 1347px) {
   body {
     align-items: flex-start;
     overflow: auto;
@@ -181,11 +191,11 @@ h1, h2, h3, h4, span {
   }
   .card {
     flex-shrink: 1;
-    width: 100%
+    width: 100%;
   }
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   #cards {
     width: 100vw;
     grid-template-columns: 1fr;
@@ -202,7 +212,7 @@ h1, h2, h3, h4, span {
   }
 }
 
-@media(max-width: 320px) {
+@media (max-width: 320px) {
   #cards {
     width: 100vw;
   }

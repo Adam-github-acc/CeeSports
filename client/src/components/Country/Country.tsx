@@ -1,9 +1,9 @@
-import './../League/League.css'
+import './../League/League.css';
 import { data } from '../../types';
 type Props = {
-  item:data
+  item: data;
 };
-const Country: React.FC<Props> = ({item}) => {
+const Country: React.FC<Props> = ({ item }) => {
   return (
     <div className="country-header">
       <div className="country-description">
@@ -12,6 +12,6 @@ const Country: React.FC<Props> = ({item}) => {
       </div>
     </div>
   );
-}
+};
 
 export default Country;

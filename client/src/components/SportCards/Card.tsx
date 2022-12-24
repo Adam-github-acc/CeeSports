@@ -1,21 +1,20 @@
-import './SportsCards.css'
+import './SportsCards.css';
 
 type Props = {
-  setSport:React.Dispatch<React.SetStateAction<string>>
-  cardName:string
-  photo:string
+  setSport: React.Dispatch<React.SetStateAction<string>>;
+  cardName: string;
+  photo: string;
 };
-const Card: React.FC<Props> = ({setSport, cardName, photo}) => {
+const Card: React.FC<Props> = ({ setSport, cardName, photo }) => {
   function handleClick() {
-    setSport(photo)
+    setSport(photo);
   }
   return (
     <div>
       <a className="card" onClick={handleClick}>
         <div className={`card-content ${photo}`}>
           <div className="shader"></div>
-          <div className="card-image">
-          </div>
+          <div className="card-image"></div>
           <div className="card-info-wrapper">
             <div className="card-info">
               <div className="card-info-title">
@@ -27,6 +26,6 @@ const Card: React.FC<Props> = ({setSport, cardName, photo}) => {
       </a>
     </div>
   );
-}
+};
 
 export default Card;
